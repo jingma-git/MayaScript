@@ -1,0 +1,9 @@
+// Create Mode
+string $window = `window -title "TestWindow" -iconName "testWnd" -widthHeight 200 55`;
+showWindow $window;
+
+// Query Mode
+window -query -widthHeight $window;
+
+// Edit Mode
+window -edit -widthHeight 100 100 $window;

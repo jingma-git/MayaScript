@@ -1,0 +1,2 @@
+string $str = python("hello.say_hello()");
+print $str;
