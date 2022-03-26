@@ -1,7 +1,7 @@
 import sys
 import maya.OpenMaya as OpenMaya
 import maya.OpenMayaMPx as OpenMayaMPx
-
+from PySide2.QtWidgets
 commandName = 'hello'
 
 class MyCommandClass( OpenMayaMPx.MPxCommand ):

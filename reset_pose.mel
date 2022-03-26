@@ -1,0 +1,20 @@
+global proc allMyChildren()
+{	
+string $sel[] = `ls -sl`;
+string $jointsList[] = `listRelatives -ad $sel`;
+
+for ($n=0 ; $n<size($sel) ; $n++)
+{
+setAttr ($sel[$n] + ".rotateX") 0;
+    setAttr ($sel[$n] + ".rotateY") 0;
+    setAttr ($sel[$n] + ".rotateZ") 0;
+}
+for ($n=0 ; $n<size($jointsList) ; $n++)
+{
+    setAttr ($jointsList[$n] + ".rotateX") 0;
+    setAttr ($jointsList[$n] + ".rotateY") 0;
+    setAttr ($jointsList[$n] + ".rotateZ") 0;
+
+}
+}
+allMyChildren();
