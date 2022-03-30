@@ -163,32 +163,43 @@ def loadInfo(info_name, geo_name):
     cmds.skinPercent( 'skinCluster1', geo_name, pruneWeights=0.01, normalize=False )
     return root_name, joint_pos
 
-if __name__ == '__main__':
-    out_dir = 'D:/Dataset/AutoRS'
-    idx = "13"
-    # idx = "ManRumbaDancing"
-    fbx_name = out_dir + '/'+ idx + '.fbx'
-
-    # # import fbx
-    # cmds.file(new=True, force=True)
-    # cmds.file(fbx_name, i=True, ignoreVersion=True, type='FBX', ra=True, mergeNamespacesOnClash=False, options="fbx", pr=True)
-    # cmds.select(clear=True)
-    # root_name = _getHierarchyRootJoint(cmds.ls(type='joint')[0])
-    
+def export_obj_rig():
+    global out_dir
+    global idx
     # export rig information as txt
     cmds.select(clear=True)
     root_name = _getHierarchyRootJoint(cmds.ls(type='joint')[0])
     jointDict = getJointDict(root_name)
     geoList = getGeometryGroups()
     print("geoList", geoList)
-    
+
     # export obj
-    obj_name = out_dir + '/obj_info/' + idx +'.obj'
+    obj_name = out_dir + '/obj_info/' + idx + '.obj'
     with open(obj_name, 'w') as file_obj:
         record_obj(root_name, geoList, file_obj)
-    info_name = out_dir + '/rig/' + idx +'.txt'
+    info_name = out_dir + '/rig/' + idx + '.txt'
     # export rig info
     with open(info_name, 'w') as file_info:
         record_info(root_name, jointDict, geoList[0], file_info)
+    # export fbx with annotated keypoints
+    fbx_name = out_dir + '/fbx/' + idx + '.fbx'
+    mel.eval('FBXExport -f "{}" -s'.format(fbx_name))
+
+if __name__ == '__main__':
+    out_dir = 'D:/Dataset/AutoRS'
+    dataset = 'B'
+    idx = "679"
+    # idx = "ManRumbaDancing"
+    fbx_name = os.path.join(out_dir, '{}/{}.fbx'.format(dataset, idx))
+
+    # # import fbx
+    # cmds.file(new=True, force=True)
+    # cmds.file(fbx_name, i=True, ignoreVersion=True, type='FBX', ra=True, mergeNamespacesOnClash=False, options="fbx", pr=True)
+    # cmds.select(clear=True)
+    # root_name = _getHierarchyRootJoint(cmds.ls(type='joint')[0])
+
+    # export
+    export_obj_rig()
+
 
     
