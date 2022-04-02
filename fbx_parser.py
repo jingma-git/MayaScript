@@ -186,9 +186,9 @@ def export_obj_rig():
     mel.eval('FBXExport -f "{}" -s'.format(fbx_name))
 
 if __name__ == '__main__':
-    out_dir = 'D:/Dataset/AutoRS'
+    out_dir = '/Users/mac/work/AutoRS'
     dataset = 'B'
-    idx = "679"
+    idx = "1248"
     # idx = "ManRumbaDancing"
     fbx_name = os.path.join(out_dir, '{}/{}.fbx'.format(dataset, idx))
 
